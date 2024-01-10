@@ -1,0 +1,13 @@
+/venv/
+/.vscode/
+/.idea/
+/sng/media/
+
+
+#все файлы байткода питона
+*.pyc
+*.xlsx
+*.xls
+
+#бд
+*.sqlite3
