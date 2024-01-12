@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content %}
+<form action="", method="post">
+    {% csrf_token%}
+    {{form.media}}
+    {{form.as_p}}
+    <button type="submit">Добавить</button>
+</form>
+{% endblock %}
+
+
+

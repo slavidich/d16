@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %}
+{{post.title}}
+{% endblock %}
+{% block content %}
+
+    {{post.title}}
+    {{ post.content|safe }}
+
+
+
+{% endblock %}
