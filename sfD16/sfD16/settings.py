@@ -126,9 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
+#STATIC_ROOT = BASE_DIR / 'staticroot'
+STATICFILES_DIRS = [BASE_DIR / "static"] #C:\1projects\d16\sfD16\static\ckeditor\ckeditor\plugins
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
@@ -173,7 +172,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'extraPlugins': ','.join([
             'youtube',
-            'html5audio'
+            #'html5audio'
         ]),
 
     },

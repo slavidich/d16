@@ -1,4 +1,4 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}
@@ -6,9 +6,10 @@
 {% endblock %}
 {% block content %}
 
-    {{post.title}}
+    {{ post.title }}
     {{ post.content|safe }}
-
-
+    {% if post.author == request.user %}
+        <a href="{% url 'postchange' post.id%}"><button>Изменить</button></a>
+    {% endif %}
 
 {% endblock %}

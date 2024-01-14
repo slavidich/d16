@@ -2,7 +2,7 @@
 /.vscode/
 /.idea/
 /sfD16/media/
-/sfD16/static/
+/sfD16/staticroot/
 
 #все файлы байткода питона
 *.pyc
