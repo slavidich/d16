@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
 
     'posts',
+    'accounts',
+
+    'django_countries',
 ]
 
 MIDDLEWARE = [
@@ -154,6 +157,8 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = True
+
+ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'

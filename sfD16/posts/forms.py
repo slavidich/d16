@@ -1,5 +1,9 @@
 from django import forms
 from .models import *
+from allauth.account.forms import SignupForm
+
+
+
 
 class AddPostForm(forms.ModelForm):
 
