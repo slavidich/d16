@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
+{% load tz %}
 {% load static %}
+    {% load tz %}
 {% block content %}
+    {{ timenow|timezone:'Asia/Yekaterinburg' }}
 
 {% for item in posts %}
-    <a href="{% url 'post' item.id %}">{{ item.title }} </a>
-    <div class="body">
+    <h3><a class="p-2" href="{% url 'post' item.id %}">{{ item.title }} </a></h3>
+    <div class="p-3">
+        {{ item.category }}
+
+        <p>{{ item.time_create|date:"d.m.Y G:i "}}</p>
+
         {{ item.content|safe }}
         {{ item.content_upload|safe }}
     </div>

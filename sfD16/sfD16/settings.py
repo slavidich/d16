@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware'
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'sfD16.urls'
@@ -178,3 +178,7 @@ CKEDITOR_CONFIGS = {
     },
 
 }
+LANGUAGE_CODE = 'ru-RU'
+USE_TZ = True
+USE_L10N=True
+USE_I18N = True

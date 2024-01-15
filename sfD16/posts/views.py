@@ -1,15 +1,22 @@
+from django.utils import timezone
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView
 from .models import Post, Category
 from .forms import AddPostForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 class PostList(ListView):
     model = Post
     template_name = 'posts.html'
     context_object_name = 'posts'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data( **kwargs)
+        context['timenow'] = timezone.now()
+        return context
 
+@login_required
 def addpost(request):
     form = AddPostForm()
     if request.method =='POST':
@@ -18,7 +25,7 @@ def addpost(request):
             obj = form.save(commit=False)
             obj.author = request.user
             obj.save()
-            return redirect('posts')
+            return redirect('post', obj.id)
     content = dict(form=form)
 
     return render(request, 'addpost.html', content)
@@ -29,6 +36,7 @@ def postview(request, id):
     content['title'] = 'test'
     return render(request, 'post.html', content)
 
+@login_required
 def postchange(request, id):
     post = Post.objects.get(id=id)
     if request.user!=post.author:
