@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load tz %}
+{% load static %}
+{% block title %}
+    {{post.title}}
+{% endblock %}
+{% block content %}
+    <a href="{% url 'sentresponses' %}">Отправленные</a>
+    <h3>Входящие отклики</h3>
+    {% for response in responses %}
+
+        <p>{{ response.sender }}: {{ response.text }} {% if response.accepted_datetime %} Уже обработано{% else %} Надо обработать!{% endif %}</p>
+
+    {% endfor %}
+{% endblock %}

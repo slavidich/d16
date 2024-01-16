@@ -17,6 +17,7 @@
           <li><a href="{% url 'posts'%}" class="nav-link px-2 text-white">Посты</a></li>
           {% if user.is_authenticated %}
             <li><a href="{% url 'addpost'%}" class="nav-link px-2 text-white">Добавить пост</a></li>
+            <li><a href="{% url 'responses'%}" class="nav-link px-2 text-white">Отклики</a></li>
           {% endif %}
         </ul>
 

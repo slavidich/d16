@@ -8,9 +8,11 @@
     <div class="p-3">
         <h1 class="p-2"><b>{{ post.title }}</b></h1>
         {{ post.category }}
-
-        <p>{{ post.time_create|timezone:timezone|date:"G:i d M Y" }}</p>
-
+        {% if usertimezone %}
+            <p>{{ post.time_create|timezone:usertimezone|date:"G:i d M Y" }}</p>
+        {% else %}
+            <p>{{ post.time_create|date:"G:i d M Y" }}</p>
+        {% endif %}
         {{ post.content|safe }}
     </div>
 
@@ -18,4 +20,17 @@
         <a href="{% url 'postchange' post.id%}"><button>Изменить</button></a>
     {% endif %}
 
+    {% if not response and request.user.is_authenticated and post.author != request.user%}
+        <p>Отправить отклик</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Отправить" />
+        </form>
+    {% elif not request.user.is_authenticated %}
+        <p>Войдите, чтобы отправить отклик</p>
+    {% elif response %}
+        <p>Вы уже отправили отклик со следующим содержанием:</p>
+        <p>{{ response.text }}</p>
+    {% endif %}
 {% endblock %}

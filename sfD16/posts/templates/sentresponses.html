@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load tz %}
+{% load static %}
+{% block title %}
+    {{title}}
+{% endblock %}
+{% block content %}
+    <h3>Отправленные </h3>
+    {% for response in responses %}
+        <p>{{ response.post.title }}</p>
+        <p>{{ response.text }}</p>
+        <p></p>
+    {% endfor %}
+{% endblock %}

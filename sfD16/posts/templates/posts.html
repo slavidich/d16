@@ -9,12 +9,15 @@
     <div class="p-3">
         {{ item.category }}
 
-        <p>{{ item.time_create|timezone:timezone|date:"G:i d M Y" }}</p>
+        {% if usertimezone %}
+            <p>{{ post.time_create|timezone:usertimezone|date:"G:i d M Y" }}</p>
+        {% else %}
+            <p>{{ post.time_create|date:"G:i d M Y" }}</p>
+        {% endif %}
 
         {{ item.content|safe }}
         {{ item.content_upload|safe }}
     </div>
 
 {% endfor %}
-
 {% endblock %}
