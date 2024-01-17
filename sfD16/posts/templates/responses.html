@@ -2,14 +2,47 @@
 {% load tz %}
 {% load static %}
 {% block title %}
-    {{post.title}}
+    {{title}}
 {% endblock %}
 {% block content %}
-    <a href="{% url 'sentresponses' %}">Отправленные</a>
-    <h3>Входящие отклики</h3>
-    {% for response in responses %}
+    {% if title == 'Исходящие отклики' %}
+        <a href="{% url 'responses'  %}">Входящие отклики</a>
+        <h3>Исходящие отклики</h3>
+        {% for response in responses %}
+            <h5 class="p-2">  Отклик № {{ response.id }}</h5>
+            <p><a href="{% url 'post' response.post.id %}">{{ response.post }}</a>: {{ response.text }} </p>
+            {% if response.accepted_datetime %}
+                {% if response.accepted %}
+                    <p>Принято пользователем {{ response.accepted_datetime|timezone:usertimezone }}</p>
+                {% else %}
+                    <p>Отклонено {{ response.accepted_datetime|timezone:usertimezone }}</p>
+                {% endif %}
+            {% else %}
+                <p>Ждет ответа пользователя</p>
+            {% endif %}
+        {% endfor %}
+    {% elif title == 'Входящие отклики' %}
+        <a href="{% url 'responses'  %}?send=1">Отправленные</a>
+        <h3>Входящие отклики</h3>
+        {% for response in responses %}
+            <h5 class="p-2">Отклик № {{ response.id }}</h5>
+            <a href="{% url 'post' response.post.id %}">{{ response.post.title }}</a>
+            <p>Пользователь: {{ response.sender }}
+            <p>Текст:{{ response.text }}</p>
+            {% if response.accepted_datetime %}
+                {% if response.accepted %} Принято {% else %} Отклонено {% endif %} {{ response.accepted_datetime|timezone:usertimezone }}
+            {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    <button name="accept" value="{{ response.id }}">Принять</button>
+                    <button name="reject" value="{{ response.id }}">Отклонить</button>
+                </form>
+                Надо обработать!
+            {% endif %}
 
-        <p>{{ response.sender }}: {{ response.text }} {% if response.accepted_datetime %} Уже обработано{% else %} Надо обработать!{% endif %}</p>
+        {% endfor %}
+    {% endif %}
 
-    {% endfor %}
+
+
 {% endblock %}

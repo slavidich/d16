@@ -148,6 +148,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+SITE_URL = 'http://127.0.0.1:8000'
 
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
@@ -160,15 +161,16 @@ ACCOUNT_EMAIL_VERIFICATION = True
 
 ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = "example@yandex.ru"
-EMAIL_HOST_PASSWORD = "iliezvcovrxqizey"
+EMAIL_HOST_USER = "fom.stud@yandex.ru"
+EMAIL_HOST_PASSWORD = "123" # waspknunvroydzes
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = "example@yandex.ru"
-SERVER_EMAIL = "example@yandex.ru"
+DEFAULT_FROM_EMAIL = "fom.stud@yandex.ru"
+SERVER_EMAIL = "fom.stud@yandex.ru"
 
 # CKEDITOR
 CKEDITOR_UPLOAD_PATH = 'uploads/'

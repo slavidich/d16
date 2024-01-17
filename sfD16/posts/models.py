@@ -32,6 +32,6 @@ class Response(models.Model):
     text = models.TextField(default=None, null=True)
     create_time = models.DateTimeField(auto_now_add=True)
     accepted = models.BooleanField(default=False)
-    accepted_datetime = models.DateTimeField(default=None, null=True)
+    accepted_datetime = models.DateTimeField(default=None, null=True, blank=True)
 
 

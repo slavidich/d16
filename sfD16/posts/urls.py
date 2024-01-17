@@ -8,6 +8,5 @@ urlpatterns = [
     path('post/<int:id>', postview, name='post'),
     path('post/<int:id>/change', postchange, name='postchange'),
     path('responses', responsesview, name='responses'),
-    path('responses/sent', sentresponsesview, name='sentresponses')
 
 ]

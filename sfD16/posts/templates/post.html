@@ -7,12 +7,14 @@
 {% block content %}
     <div class="p-3">
         <h1 class="p-2"><b>{{ post.title }}</b></h1>
-        {{ post.category }}
         {% if usertimezone %}
             <p>{{ post.time_create|timezone:usertimezone|date:"G:i d M Y" }}</p>
         {% else %}
             <p>{{ post.time_create|date:"G:i d M Y" }}</p>
         {% endif %}
+        <p>Автор: {{ post.author }}</p>
+        <p>Категория: {{ post.category }}</p>
+
         {{ post.content|safe }}
     </div>
 
