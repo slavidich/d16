@@ -116,14 +116,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
+LANGUAGE_CODE = 'ru-RU'
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
+USE_L10N=True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -165,12 +162,12 @@ ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = "fom.stud@yandex.ru"
+EMAIL_HOST_USER = "example@yandex.ru"
 EMAIL_HOST_PASSWORD = "123" # waspknunvroydzes
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = "fom.stud@yandex.ru"
-SERVER_EMAIL = "fom.stud@yandex.ru"
+DEFAULT_FROM_EMAIL = "example@yandex.ru"
+SERVER_EMAIL = "example@yandex.ru"
 
 # CKEDITOR
 CKEDITOR_UPLOAD_PATH = 'uploads/'
@@ -179,13 +176,16 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'extraPlugins': ','.join([
             'youtube',
-            #'html5audio'
         ]),
 
     },
 
 }
-LANGUAGE_CODE = 'ru-RU'
-USE_TZ = True
-USE_L10N=True
-USE_I18N = True
+
+# CELERY  REDIS
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACKS_LATE = True

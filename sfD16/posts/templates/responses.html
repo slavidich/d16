@@ -22,7 +22,19 @@
             {% endif %}
         {% endfor %}
     {% elif title == 'Входящие отклики' %}
+
         <a href="{% url 'responses'  %}?send=1">Отправленные</a>
+        {% if postlist %}
+            <form action="" method="get">
+                <select name="postfilter" required="">
+                    <option value="" selected="">---------</option>
+                    {% for post in postlist %}
+                        <option value="{{ post.id }}" {% if choosenpost == post.id %}selected{% endif %}>{{post.title}}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" name="">Фильтровать</button>
+            </form>
+        {% endif %}
         <h3>Входящие отклики</h3>
         {% for response in responses %}
             <h5 class="p-2">Отклик № {{ response.id }}</h5>

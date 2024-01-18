@@ -12,3 +12,8 @@ class AddPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content', 'category']
+
+class PostFilter(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['category']

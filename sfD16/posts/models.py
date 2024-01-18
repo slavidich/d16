@@ -34,4 +34,7 @@ class Response(models.Model):
     accepted = models.BooleanField(default=False)
     accepted_datetime = models.DateTimeField(default=None, null=True, blank=True)
 
+    class Meta:
+        ordering = ['-create_time']
+
 
