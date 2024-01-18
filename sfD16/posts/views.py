@@ -67,6 +67,7 @@ def postview(request, id):
             obj.post = post
             obj.save()
             tasks.msgrespcreate.delay(postid = post.id) # отправка письма после создания отклика
+            content['response'] = Response.objects.filter(post=post, sender=request.user).first()
     return render(request, 'post.html', content)
 
 @login_required

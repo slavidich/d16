@@ -171,16 +171,20 @@ SERVER_EMAIL = "example@yandex.ru"
 
 # CKEDITOR
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
         'extraPlugins': ','.join([
             'youtube',
         ]),
+        'filebrowserBrowseUrl':''
+
 
     },
-
 }
+
+CKEDITOR_RESTRICT_BY_USER = True
 
 # CELERY  REDIS
 CELERY_BROKER_URL = 'redis://localhost:6379'
